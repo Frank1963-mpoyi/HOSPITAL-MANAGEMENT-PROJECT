@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block title %} {% endblock title %}
+
+
+{% block content %}
+
+
+<style>
+    .mydiv:hover{
+        box-shadow: 0 0 20px 0 rgba(0,0,0,0.3);
+        transform: translateY(-20px); /* translate Y its moving up*/
+    }
+    .mydiv a{
+        text-decoration: none;
+
+    }
+</style>
+
+<div class="container">
+    <h1 class="my-5 text-center"> CONTACT US </h1>
+    <!-- use in bootstrap column alignment  -->
+    <div class="row text-center">
+        <div class="col-lg-3 col-sm-6 mydiv">
+            <h4 class=""><i class="fas fa-phone-square "> Contact</i></h4>
+            <p class="text-danger font-weight-bold mt-3"><a href="tel:+2778111.....">+27781114041</a></p>
+        </div>
+        <div class="col-lg-3 col-sm-6 mydiv">
+            <h4><i class="fa fa-envelope "> Send Email</i></h4>
+            <p class="font-weight-bold mt-3"><a href="mailto:frankmpoyi63@gmail.com">frankmpoyi63@gmail.com</a></p>
+        </div>
+        <div class="col-lg-3 col-sm-6 mydiv">
+            <h4> <i class="fa fa-address-card" aria-hidden="true"> Office address</h4></i>
+            <p  class="font-weight-bold mt-3"><a href="http://maps.google.com/maps?q=ferndale villas">28 loubser street Ferndale Villas</a></p>
+        </div>
+        <div class="col-lg-3 col-sm-6 mydiv">
+            <h4> <i class="fa fa-calendar-o" aria-hidden="true"> Office Time</h4></i>
+            <p class="font-weight-bold mt-3">10AM  to 17PM</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
