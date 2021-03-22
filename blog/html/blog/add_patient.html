@@ -2,13 +2,12 @@
 {% include 'base.html' %}
 
 
-
 {% block content %}
 
 {% ifequal error 'no' %}
 <script>
     alert("Record save successfully ");
-    window.location = "{% url 'view_doctor' %}";
+    window.location = "{% url 'view_patient' %}";
 </script>
 {% endifequal %}
 
@@ -21,22 +20,23 @@
 
 
 <div class="container" style="margin-top: 120px;" >
-    <h2 class="test-center">Add Doctor </h2>
+    <h2 class="test-center">Add Patient </h2>
         <form action="" method="POST">
             {% csrf_token %}
-            <label for="iname"> Doctor Name: </label>
+            <label for="iname"> Patient Name: </label>
             <input type="text" id="iname" name="name" class="form-control">
+            
+            <label for="ipwd"> Gender:   </label>
+            <input type="text" id="ipwd" name="gender" class="form-control">
             
             <label for="ipwd"> Mobile:   </label>
             <input type="text" id="ipwd" name="mobile" class="form-control">
+
             
-            <label for="ipwd"> Special:   </label>
-            <input type="text" id="ipwd" name="special" class="form-control">
+            <label for="ipwd"> Address:   </label>
+            <input type="text" id="ipwd" name="address" class="form-control">
             <input type="submit" value="Submit" class="form-control btn btn-primary mt-3">
         </form>
     </h2>
 </div>
-
-
-
 {% endblock content %}

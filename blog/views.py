@@ -54,44 +54,6 @@ def logout_admin(request):
     return redirect('login')
 
 
-def view_doctor(request):
-    # if you are not staff member they must redirect you in login
-    if not request.user.is_staff:
-        return redirect('login')
-    doc = Doctor.objects.all()
-    context = {'doc':doc}
-    template_name =  'blog/view_doctor.html'
-    return render(request, template_name , context)
-
-def delete_doctor(request, pk=None):
-    # if you are not staff member they must redirect you in login
-    if not request.user.is_staff:
-        return redirect('login')
-    doc = get_object_or_404(Doctor, id = pk)
-    doc.delete()
-    return redirect( view_doctor)
-
-
-def add_doctor(request):
-    error = ""
-    if not request.user.is_staff:
-        return redirect('login')
-    if request.method == "POST":
-        n = request.POST.get('name')
-        m = request.POST.get('mobile')
-        s = request.POST.get('special')
-
-        try:
-            Doctor.objects.create(name=n, moblie=m, special=s)
-            error = 'no'
-        except:
-            error = 'yes'
-            
-    context = {
-        'error': error
-    }        
-    return render (request, 'blog/add_doctor.html', context)
-
 
 
 
