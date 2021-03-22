@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .models import Doctor
+from .models import Doctor, Patient, Appointment
 
 
 def home_view(request):
@@ -24,7 +24,31 @@ def about_us(request):
 def admin_login (request):
     if not request.user.is_staff:
         return redirect('login')
-    return render (request, 'blog/admin_login.html')
+    
+    doctor = Doctor.objects.all()
+    patient = Patient.objects.all()
+    appointment = Appointment.objects.all()
+    d=0
+    p=0
+    a=0
+    
+    for i in doctor:
+        d = d + 1
+        
+    for i in  patient:
+        p+=1
+        
+    for i in appointment:
+        a+=1
+    
+    context = {
+        'd': d,
+        'p': p,
+        'a': a
+    }
+    return render (request, 'blog/admin_login.html', context)
+
+
 
 def login_admin(request):
     error = ""

@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from .models import Appointment, Patient, Doctor
-#from .forms import DoctorModelForm
+from .forms import DoctorModelForm, AppointmentModelForm,  PatientModelForm
 
 
 
@@ -22,14 +22,14 @@ def update_appointment(request, pk=None):
     # if you are not staff member they must redirect you in login
     if not request.user.is_staff:
         return redirect('login')
-    if request.method == 'POST':
-        patient = Appointment.objects.get(id=pk)
-        form =  PatientModelForm(request.POST or None , instance=patient)
-        if form.is_valid():
-            form.save()
-            return redirect(view_patient)
+    
+    appointment = Appointment.objects.get(id=pk)
+    form =  AppointmentModelForm(request.POST or None , instance=appointment)
+    if form.is_valid():
+        form.save()
+        return redirect(view_appointment)
     context = {'form': form}
-    return render(request, 'blog/update.html', context)
+    return render(request, 'blog/update_appointment.html', context)
 
 
 

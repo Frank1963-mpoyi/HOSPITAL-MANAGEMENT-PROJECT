@@ -28,8 +28,7 @@
             <td>{{i.gender}}</td>
             <td>{{i.mobile}}</td>
             <td>{{i.address}}</td>
-            <td><a href="#" onclick="return confirm('Are you sure you want to delete')" 
-                class="btn btn-info">Update</a></td>
+            <td><a href="{% url 'update_patient' i.id %}" class="btn btn-info">Update</a></td>
             <td><a href="{% url 'delete_patient' i.id %}" onclick="return confirm('Are you sure you want to delete')" 
                 class="btn btn-danger">Delete</a></td>
         </tr>

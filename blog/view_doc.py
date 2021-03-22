@@ -24,13 +24,14 @@ def update_doctor (request, pk=None):
     # if you are not staff member they must redirect you in login
     if not request.user.is_staff:
         return redirect('login')
-    if request.method == 'POST':
-        patient = DoctorModelForm.objects.get(id=pk)
-        form =  DoctorModelForm(request.POST or None , instance=patient)
-        if form.is_valid():
-            form.save()
-            #return redirect(view_patient)
-    return redirect( view_doctor)
+    doctor = Doctor.objects.get(id=pk)
+    form =  DoctorModelForm(request.POST , instance=doctor)
+    if form.is_valid():
+        form.save()
+        return redirect(view_doctor)
+    template_name = "blog/update_doctor.html"
+    context = {"form" : form }
+    return render(request, template_name, context)
 
 
 def delete_doctor(request, pk=None):

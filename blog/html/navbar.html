@@ -8,17 +8,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
+            {% if not request.user.is_staff %}
             <li class="nav-item active">
                 <a class="nav-link" href="{% url 'home' %}">Home </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{% url 'contact_view' %}">Contact</a>
-            </li>
-            <li class="nav-item">
                 <a class="nav-link" href="{% url 'about_us' %}">About us</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'contact_view' %}">Contact</a>
+            </li>
 
-            {% if not request.user.is_staff %}
             <!-- when I am login  I must not see again login   -->
             <li class="nav-item">
                 <a class="nav-link" href="{% url 'login' %}">Login</a>
@@ -26,6 +26,9 @@
             {% endif %}
 
             {% if request.user.is_staff %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'admin_login' %}">Dashboard <span class='sr-only'>current}</span></a>
+            </li>
             <!-- I must see this only when loged in  -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
