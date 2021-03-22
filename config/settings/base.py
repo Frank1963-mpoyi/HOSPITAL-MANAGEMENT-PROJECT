@@ -117,7 +117,8 @@ STATIC_URL = '/static/'
 STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_DIRS =[
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static'),# when you dont put in 'static' define the path of static files
+    # in setting static will make them visible every where
 ]
 
 

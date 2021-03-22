@@ -6,7 +6,7 @@
 {% ifequal error 'no' %}
 <script>
     alert("Login Successfully ");
-    window.location = "{% url 'home' %}";
+    window.location = "{% url 'admin_login' %}";
 </script>
 {% endifequal %}
 
@@ -18,7 +18,7 @@
 {% endifequal %}
 
 
-<div class="container">
+<div class="container" style="margin-top: 120px;" >
     <h2 class="test-center"> Admin Login </h2>
         <form action="" method="POST">
             {% csrf_token %}
