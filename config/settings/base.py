@@ -14,15 +14,17 @@ BASE_DIR = os.path.dirname(
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '2dyf&26sr+dobik$$hclxy1tn&)g4=(93vb+(*$(angrb1ggvc'
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
 
 ALLOWED_HOSTS = ['*']
 
 
 # Application definition
-
 INSTALLED_APPS = [
+    
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -32,6 +34,10 @@ INSTALLED_APPS = [
     
     #3rd party App
     'crispy_forms',
+    'rest_framework',
+    'rest_framework.authtoken',  
+    'corsheaders', 
+
 ]
 
 
@@ -41,9 +47,18 @@ INSTALLED_APPS.append('blog')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 
+#  for react api frontend
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    
+    # add before common middleware also for api frontend react
+    'corsheaders.middleware.CorsMiddleware', 
+    
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -75,19 +90,15 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'databe_sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'databases/database'),
     }
 }
 
 
 # Password validation
-# https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -105,11 +116,9 @@ AUTH_PASSWORD_VALIDATORS = [
 
 
 # Internationalization
-# https://docs.djangoproject.com/en/3.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE       = 'Africa/Johannesburg'
 
 USE_I18N = True
 
@@ -119,16 +128,17 @@ USE_TZ = True
 
 
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.0/howto/static-files/
-
 STATIC_URL = '/static/'
-STATIC_ROOT =  os.path.join(BASE_DIR, 'staticfiles')
+
+STATIC_ROOT =  os.path.join(BASE_DIR, 'cdn_static/staticfiles')
 
 STATIC_DIRS =[
-    os.path.join(BASE_DIR, 'static'),# when you dont put in 'static' define the path of static files
-    # in setting static will make them visible every where
+    os.path.join(BASE_DIR, 'static'),
+
 ]
 
 
 MEDIA_URL = '/media/'
-STATIC_ROOT =  os.path.join(BASE_DIR, 'static/media')
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'static/media')
+
+

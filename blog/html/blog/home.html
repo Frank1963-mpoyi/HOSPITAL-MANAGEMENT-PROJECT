@@ -13,8 +13,9 @@
         box-sizing: border-box;
     }
 
-    img{
+    .carousel-item img{
         height: 400px;
+        width: 200px;
     }
 </style>
 
@@ -28,7 +29,7 @@
 </ol>
 <div class="carousel-inner">
     <div class="carousel-item active">
-    <img class="d-block w-100 " style="height: 100vh;" src="{% static 'blog/images/hospital1.jpg' %}" alt="First slide">
+    <img class="d-block w-100 " style="height: 80vh;" src="{% static 'blog/images/hospital1.jpg' %}" alt="First slide">
     <div class="carousel-caption d-none d-md-block">
         <h3>Postoperative</h3>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate, dicta!</p>
@@ -88,105 +89,43 @@
 
 <!-- Departememnt -->
 <div class="container mt-5">
-    
     <div class="row">
         <div class="col-lg-12">
             <h3 class="text-center text-dark">Departement</h3>
             <h1 class="text-center text-dark">Medical Service </h1>
             <div class=" d-flex flex-wrap justify-content-around align-items-center ">
+                {% for img in services %}
                 <div class="card mt-2" style="width: 10rem; height: 100px; "><!--for global card-->
-                    <img class="card-img-top"  src="{% static 'blog/images/gynecology.jpg' %}" alt="Card image cap">
+                    <img class="card-img-top" style="width: 10rem; height: 140px; " src="{{ img.photo.url }}" alt="Card image cap">
                     <div class="card-body">
-                        <p class="card-text">Gynecologist and obstetrician</p>
+                        <p class="card-text text-center">{{ img.title }}</p>
                     </div>
                 </div>
-                <div class="card" style="width: 10rem; height: 100px;">
-                    <img class="card-img-top"   src="{% static 'blog/images/radio.jpg' %}" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">Radiology</p>
-                    </div>
-                </div>
-                <div class="card" style="width: 10rem; height: 100px;">
-                    <img class="card-img-top" src="{% static 'blog/images/orto.jpg' %}" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">Orthopedic and Surgery</p>
-                    </div>
-                </div>
-                <div class="card" style="width: 10rem; height: 100px;">
-                    <img class="card-img-top" src="{% static 'blog/images/lapa.jpg' %}" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">General and Laparoscopic Surgery</p>
-                    </div>
-                </div>
-                <div class="card" style="width: 10rem; height: 100px;">
-                    <img class="card-img-top" src="{% static 'blog/images/phy.jpg' %}" alt="Card image cap">
-                    <div class="card-body">
-                        <p class="card-text">Physician</p>
-                    </div>
-            
-                </div>    
+                {% endfor %}
             </div>
-
         </div>
     </div>
 </div>
-
-    
-
 <!-- end Department -->
-
-
 
 <div class="container">
 <div class="row">
-    <div class="col-lg-12">
-        
+    <div class="col-lg-12">  
         <h1 class="text-center" style="margin-top: 250px;">Other services</h1>
         <div class=" d-flex flex-row flex-wrap justify-content-around align-items-center ">
+            {% for item in  others %}
             <div class="card mt-2" style="width: 8rem; height: 100px; ">
-                <img class="card-img-top" src="{% static 'blog/images/eme.jpg' %}" alt="Card image cap">
+                <img class="card-img-top" style="width: 8rem; height: 120px;" src="{{ item.images.url }}" alt="Card image cap">
                 <div class="card-body">
-                    <p class="card-text">Emergency</p>
+                    <p class="card-text text-center">{{ item.name }}</p>
                 </div>
             </div>
-            <div class="card" style="width: 8rem; height: 100px;">
-                <img class="card-img-top" src="{% static 'blog/images/pham.jpg' %}" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">Pharmacy</p>
-                </div>
-            </div>
-            <div class="card" style="width: 8rem; height: 100px;">
-                <img class="card-img-top" src="{% static 'blog/images/endo.jpg' %}" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">Endoscopy</p>
-                </div>
-            </div>
-            <div class="card" style="width: 8rem; height: 100px;">
-                <img class="card-img-top" src="{% static 'blog/images/hospital3.jpg' %}" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">ECHO Service</p>
-                </div>
-            </div>
-            <div class="card" style="width: 8rem; height: 100px;">
-                <img class="card-img-top" src="{% static 'blog/images/hospital3.jpg' %}" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">Didital X-ray</p>
-                </div>
-        
-            </div>  
-
-            <div class="card" style="width: 8rem; height: 100px;">
-                <img class="card-img-top" src="{% static 'blog/images/hospital3.jpg' %}" alt="Card image cap">
-                <div class="card-body">
-                    <p class="card-text">Lab</p>
-                </div>
-        
-            </div> 
+            {% endfor %}
         </div>
-
     </div>
 </div>
 </div>
+
 
 <!-- our team -->
 <div class="container">
@@ -198,7 +137,7 @@
             <h1 class="text-center">Specialist Doctors </h1>
             <cdiv class=" d-flex flex-row flex-wrap justify-content-around align-items-center ">
                 <div class="card mt-2" style="width: 12rem; height: 100px; ">
-                    <img class="card-img-top" src="{% static 'blog/images/eme.jpg' %}" alt="Card image cap">
+                    <img class="card-img-top" style="width: 12rem; height: 200px;" src="{% static 'blog/images/eme.jpg' %}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-text">Dr Xyz</h5>
                         <p>Senior Consultant Surgeon</p>
@@ -206,7 +145,7 @@
                     </div>
                 </div>
                 <div class="card" style="width: 12rem; height: 100px;">
-                    <img class="card-img-top" src="{% static 'blog/images/pham.jpg' %}" alt="Card image cap">
+                    <img class="card-img-top" style="width: 12rem; height: 200px;" src="{% static 'blog/images/pham.jpg' %}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-text">DR Lucky Sharma</h5>
                         <p>Gynecologist And obstetrician</p>
@@ -216,7 +155,7 @@
                     </div>
                 </div>
                 <div class="card" style="width: 12rem; height: 100px;">
-                    <img class="card-img-top" src="{% static 'blog/images/endo.jpg' %}" alt="Card image cap">
+                    <img class="card-img-top" style="width: 12rem; height: 180px;" src="{% static 'blog/images/endo.jpg' %}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-text">Dr ABC</h5>
                         <p>Orthopedic Surgeon</p>
@@ -224,14 +163,14 @@
                     </div>
                 </div>
                 <div class="card" style="width: 12rem; height: 100px;">
-                    <img class="card-img-top" src="{% static 'blog/images/hospital3.jpg' %}" alt="Card image cap">
+                    <img class="card-img-top" style="width: 12rem; height: 180px;"  src="{% static 'blog/images/hospital3.jpg' %}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-text">Dr Dev</h5>
                         <p>Consultant Physician</p>
                         <p>MBBS, MD (Internal Medecine )</p>
                     </div>
                 </div>
-              
+            
 
             
             </cdiv>
@@ -241,4 +180,6 @@
 
 
 </div>
+
+{% include 'footer.html' %}
 {% endblock content %}

@@ -1,4 +1,10 @@
-from django.db import models
+from    django.db               import      models
+from    core.model_mixins       import      AuditFields
+
+
+
+
+
 
 
 class Doctor(models.Model):
@@ -26,3 +32,26 @@ class Appointment(models.Model):
     
     def __str__(self):
         return self.doctor.name
+    
+    
+class MedicalService(AuditFields):
+    
+    
+    def __str__(self):
+        return self.title
+    
+
+class OtherService(models.Model):
+    name               = models.CharField('NAME',         max_length=250, default="name")
+    images               = models.ImageField('IMAGE',     upload_to='images/', default="mpoyi.jpg")
+    
+    def __str__(self):
+        return self.name
+    
+
+class MeetOurTeem(AuditFields):
+    
+    
+    def __str__(self):
+        return self.title
+    

@@ -15,8 +15,6 @@ from .views   import (
 
 
 
-
-
 urlpatterns = [
     
     path('',            home_view,      name='home'),
@@ -49,5 +47,7 @@ urlpatterns = [
     path('add_appointment/', add_appointment, name='add_appointment'),
     path('update_appointment/<int:pk>', update_appointment,   name='update_appointment'),
     path('delete_appointment/<int:pk>',delete_appointment,      name='delete_appointment'),
+    
+
 
 ]

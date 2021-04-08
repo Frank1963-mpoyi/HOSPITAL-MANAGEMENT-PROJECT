@@ -1,12 +1,27 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
-from .models import Doctor, Patient, Appointment
+from .models import(
+    Doctor, 
+    Patient, 
+    Appointment,
+    MedicalService, 
+    OtherService
+    )
 
 
 def home_view(request):
+
+    services = MedicalService.objects.all()
+    others   = OtherService.objects.all()
+    
     template_name =  'blog/home.html'
-    return render(request, template_name )
+    
+    context = {
+        'services': services,
+        'others': others,
+        }
+    return render(request, template_name, context )
 
 
 
